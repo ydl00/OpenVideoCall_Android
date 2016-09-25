@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.SurfaceView;
 import io.agora.propeller.Constant;
 import io.agora.openvcall.R;
+import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.RtcEngineEx;
 import io.agora.rtc.video.VideoCanvas;
@@ -226,6 +227,7 @@ public class WorkerThread extends Thread {
                 throw new RuntimeException("NEED TO use your App ID, get your own ID at https://dashboard.agora.io/");
             }
             mRtcEngine = RtcEngineEx.create(mContext, appId, mEngineEventHandler.mRtcEventHandler);
+            mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
             mRtcEngine.enableVideo();
             mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
             mRtcEngine.setParameters(String.format(Locale.US, "{\"rtc.log_file\":\"%s\"}", Environment.getExternalStorageDirectory()
